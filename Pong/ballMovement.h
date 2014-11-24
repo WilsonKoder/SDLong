@@ -15,6 +15,8 @@ class ballMovement {
 public:
     int xMovement();
     int yMovement();
+    int player1Hit();
+    int player2Hit();
 private:
 };
 

@@ -9,11 +9,13 @@
 #include "game.h"
 #include "textureManager.h"
 #include "ballMovement.h"
+#include "collision.h"
 #include <iostream>
 
 // g prefix because they are global variables
 
 TextureManager* tm = 0;
+collision* col = 0;
 SDL_Window *g_pWindow = 0;
 SDL_Renderer *g_pRenderer = 0;
 bool running = false;
@@ -32,9 +34,14 @@ int ballMoveX = 0;
 int ballMoveY = 0;
 ballMovement* bm = new ballMovement();
 
+SDL_Rect ballRect;
+SDL_Rect player1Rect;
+SDL_Rect player2Rect;
+
 bool Game::init(int resx, int resy, bool fullscreen)
 {
     tm = new TextureManager();
+    col = new collision();
     int flags = 0;
     if(fullscreen)
     {
@@ -176,6 +183,17 @@ void Game::update()
         ballMoveY = ballMoveY * -1;
     }
     
+    if (col->checkCollision(ballRect, player1Rect) == true)
+    {
+        ballMoveX = bm->player1Hit();
+        ballMoveY = bm->yMovement();
+    }
+    else if (col->checkCollision(ballRect, player2Rect))
+    {
+        ballMoveX = bm->player2Hit();
+        ballMoveY = bm->yMovement();
+    }
+    
     ballX += ballMoveX;
     ballY += ballMoveY;
     
@@ -188,9 +206,9 @@ void Game::render()
     //All drawing code goes inbetween SDL_RenderPresent and SDL_SetRenderDrawColor
     
     tm->draw("bg", 0, 0, 800, 600, g_pRenderer);
-    tm->draw("player1", 15, p1YPos, 15, 80, g_pRenderer);
-    tm->draw("player2", 770, p2YPos, 15, 80, g_pRenderer);
-    tm->draw("ball", ballX, ballY, 30, 30, g_pRenderer);
+    player1Rect = tm->draw("player1", 15, p1YPos, 15, 80, g_pRenderer);
+    player2Rect = tm->draw("player2", 770, p2YPos, 15, 80, g_pRenderer);
+    ballRect = tm->draw("ball", ballX, ballY, 30, 30, g_pRenderer);
     
     SDL_RenderPresent(g_pRenderer);
 }

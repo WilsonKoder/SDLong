@@ -33,7 +33,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *pR
     return false;
 }
 
-void TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *pRenderer, SDL_RendererFlip flip)
+SDL_Rect TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *pRenderer, SDL_RendererFlip flip)
 {
     if (flip == 0)
     {
@@ -52,6 +52,8 @@ void TextureManager::draw(std::string id, int x, int y, int width, int height, S
     destRect.y = y;
     
     SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, flip);
+    
+    return destRect;
 }
 
 

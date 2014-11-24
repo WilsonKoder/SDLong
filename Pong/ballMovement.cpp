@@ -28,3 +28,23 @@ int ballMovement::yMovement()
     }
     return movement;
 }
+
+int ballMovement::player1Hit()
+{
+    int movement = rand() % 9;
+    if (movement == 0)
+    {
+        movement = rand() % 9;
+    }
+    return movement;
+}
+
+int ballMovement::player2Hit()
+{
+    int movement = rand() % 9;
+    if (movement == 0)
+    {
+        movement = rand() % 9;
+    }
+    return movement * -1;
+}
