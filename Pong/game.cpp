@@ -60,10 +60,10 @@ bool Game::init(int resx, int resy, bool fullscreen)
             {
                 running = true;
                 
-                tm->load("/Users/WilsonKoder/C++P/projects/Pong/Pong/Images/bg.png", "bg", g_pRenderer);
-                tm->load("/Users/WilsonKoder/C++P/projects/Pong/Pong/Images/paddle.png", "player1", g_pRenderer);
-                tm->load("/Users/WilsonKoder/C++P/projects/Pong/Pong/Images/paddle.png", "player2", g_pRenderer);
-                tm->load("/Users/WilsonKoder/C++P/projects/Pong/Pong/Images/ball.png", "ball", g_pRenderer);
+                tm->load("Images/bg.png", "bg", g_pRenderer);
+                tm->load("Images/paddle.png", "player1", g_pRenderer);
+                tm->load("Images/paddle.png", "player2", g_pRenderer);
+                tm->load("Images/ball.png", "ball", g_pRenderer);
                 
                 reset();
                 
