@@ -9,9 +9,11 @@
 #include "textureManager.h"
 #include <SDL2_image/SDL_image.h>
 
-std::map<std::string, SDL_Texture*> m_textureMap;
+using namespace std;
 
-bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *pRenderer)
+map<string, SDL_Texture*> m_textureMap;
+
+bool TextureManager::load(string fileName, string id, SDL_Renderer *pRenderer)
 {
     
     SDL_Surface *pTempSurface = IMG_Load(fileName.c_str());
@@ -33,7 +35,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer *pR
     return false;
 }
 
-SDL_Rect TextureManager::draw(std::string id, int x, int y, int width, int height, SDL_Renderer *pRenderer, SDL_RendererFlip flip)
+SDL_Rect TextureManager::draw(string id, int x, int y, int width, int height, SDL_Renderer *pRenderer, SDL_RendererFlip flip)
 {
     if (flip == 0)
     {
